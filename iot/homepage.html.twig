@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    {{ contentList('sensor_data', 'sensors', {"isActive": true}, {"_id": "desc"}, 100) }}
+    
+{% endblock %}

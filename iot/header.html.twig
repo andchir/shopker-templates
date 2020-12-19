@@ -1,0 +1,67 @@
+<header class="bg-primary mb-5 shadow-sm">
+    <div class="py-2">
+        <div class="container">
+    
+            <div class="float-none float-sm-start text-center text-sm-left mb-2 mb-sm-0">
+                <a class="text-light" href="{{ pathLocalized('homepage') }}">
+                    {{ app_name }}
+                </a>
+            </div>
+            
+            <div class="float-none float-sm-end text-center">
+    
+                <div class="d-inline-block">
+                    {% if is_granted('ROLE_USER') %}
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="btn btn-sm btn-outline-light" data-toggle="tooltip" title="{{ 'Administration' | trans }}" href="{{ path('admin') }}" rel="nofollow">
+                                <i class="bi bi-gear"></i>
+                            </a>
+                        {% endif %}
+                        <div class="d-inline-block ml-1">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-person"></i>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{{ pathLocalized('profile_history_orders') }}" rel="nofollow">
+                                        <i class="icon-list text-muted"></i>
+                                        &nbsp;
+                                        {{ 'History of orders' | trans }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ pathLocalized('profile_contacts') }}" rel="nofollow">
+                                        <i class="icon-head text-muted"></i>
+                                        &nbsp;
+                                        {{ 'Contact details' | trans }}
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    {% if is_granted('IS_IMPERSONATOR') %}
+                                        <a class="dropdown-item text-muted" href="{{ path('homepage', {'_switch_user': '_exit'}) }}" rel="nofollow">
+                                            <i class="icon-esc"></i>
+                                            &nbsp;
+                                            {{ 'Exit impersonation' | trans }}
+                                        </a>
+                                    {% endif %}
+                                    <a class="dropdown-item text-muted" href="{{ logout_path() }}" rel="nofollow">
+                                        <i class="icon-power"></i>
+                                        &nbsp;
+                                        {{ 'Log out' | trans }}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a class="btn btn-sm btn-outline-light btn-wide rounded-pill ml-1" href="{{ pathLocalized('login') }}" rel="nofollow">
+                            {{ 'Log in' | trans }}
+                            <i class="icon-unlock"></i>
+                        </a>
+                    {% endif %}
+                </div>
+                
+                <div class="d-inline-block ml-1">
+                    {{ settingsList('SETTINGS_LANGUAGES', 'languages_list', false, true) }}
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</header>

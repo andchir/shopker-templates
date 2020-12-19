@@ -1,0 +1,28 @@
+<script>
+    const data_{{ collectionName }} = [
+        {% for item in items %}
+        { temperature: {{ item.temperature }}, humidity: {{ item.humidity }}, pm25: {{ item.pm25 }}, time: "{{ item.time | date('d.m.Y H:i:s') }}" }{% if not loop.last %},{% endif %}
+        
+        {% endfor -%}
+    ];
+</script>
+
+{% for field in contentType.getFieldsByFlag('showOnPage') %}
+    
+    <div class="card shadow mb-5">
+        <div class="card-header">
+            {{ field.title }}, {{ field.description }}
+        </div>
+        <div class="card-body">
+            
+            <div id="chart-{{ field.name }}" style="width:100%; height:350px;"></div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    createPlot('chart-{{ field.name }}', data_{{ collectionName }}, '{{ field.name }}', 'time');
+                });
+            </script>
+        
+        </div>
+    </div>
+
+{% endfor %}
