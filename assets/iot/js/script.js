@@ -20,7 +20,7 @@ function createPlot(elementId, data, fieldNameY, fieldNameX) {
                 width: 3
             },
             marker: {
-                size: 6,
+                size: 7,
                 color: '#17BECF'
             }
         }],
