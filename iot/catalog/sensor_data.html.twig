@@ -11,6 +11,10 @@
     ];
 </script>
 
+<div>
+    {% include 'nav/pagination.html.twig' %}
+</div>
+
 {% for field in contentType.getFieldsByFlag('showOnPage') %}
     
     <div class="card shadow mb-5">

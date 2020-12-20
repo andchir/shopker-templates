@@ -2,8 +2,10 @@
 
 {% block body %}
     
-    <div class="text-end mb-3" style="margin-top: -2rem;">
-        <a href="/sensors/">Все датчики</a>
+    <div class="position-relative" style="z-index: 5;">
+        <div class="position-absolute top-0 end-0 px-3 pt-2">
+            <a href="/sensors/">Все датчики</a>
+        </div>
     </div>
     
     {{ contentList('sensor_data', 'sensors', {"isActive": true}, {"_id": "asc"}, -50) }}

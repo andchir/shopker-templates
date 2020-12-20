@@ -1,6 +1,6 @@
 {% if pagesOptions.total > 1 %}
 <nav>
-    <ul class="pagination pagination-rounded">
+    <ul class="pagination pagination-rounded mb-0">
         {% if pagesOptions.current != pagesOptions.prev %}
             <li class="page-item">
                 <a class="page-link" href="{{ path(app.request.attributes.get('_route'), {'page': pagesOptions.prev}) }}" aria-label="Previous">
