@@ -23,17 +23,6 @@
                                     <i class="bi bi-person"></i>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="{{ pathLocalized('profile_history_orders') }}" rel="nofollow">
-                                        <i class="icon-list text-muted"></i>
-                                        &nbsp;
-                                        {{ 'History of orders' | trans }}
-                                    </a>
-                                    <a class="dropdown-item" href="{{ pathLocalized('profile_contacts') }}" rel="nofollow">
-                                        <i class="icon-head text-muted"></i>
-                                        &nbsp;
-                                        {{ 'Contact details' | trans }}
-                                    </a>
-                                    <div class="dropdown-divider"></div>
                                     {% if is_granted('IS_IMPERSONATOR') %}
                                         <a class="dropdown-item text-muted" href="{{ path('homepage', {'_switch_user': '_exit'}) }}" rel="nofollow">
                                             <i class="icon-esc"></i>
