@@ -1,8 +1,12 @@
 <script>
     const data_{{ collectionName }} = [
         {% for item in items %}
-        { temperature: {{ item.temperature }}, humidity: {{ item.humidity }}, pm25: {{ item.pm25 }}, time: "{{ item.time | date('d.m.Y H:i:s') }}" }{% if not loop.last %},{% endif %}
-        
+            {
+                temperature: {{ item.temperature | default('null') }},
+                humidity: {{ item.humidity | default('null') }},
+                pm25: {{ item.pm25 | default('null') }},
+                time: "{{ item.time | default('') | date('d.m.Y H:i:s') }}"
+            }{% if not loop.last %},{% endif %}
         {% endfor -%}
     ];
 </script>
@@ -11,7 +15,7 @@
     
     <div class="card shadow mb-5">
         <div class="card-header">
-            {{ field.title }}, {{ field.description }}
+            {{ field.title }}
         </div>
         <div class="card-body">
             

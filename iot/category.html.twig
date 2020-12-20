@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ currentPage.title | default('') }} - {{ app_name }}{% endblock %}
+
+{% block body %}
+
+    {% include 'nav/breadcrumbs.html.twig' %}
+
+    <div class="min-height400">
+
+        <h1>{{ fieldByLocale(currentPage.menuData, 'title') }}</h1>
+
+        {% include 'nav/child-categories-menu.html.twig' %}
+
+        {% include 'nav/siblings-menu.html.twig' %}
+    
+        {{ contentList('sensor_data', currentCategory.contentType.collection, {"isActive": true, "parentId": currentCategory.id}, {"_id": "asc"}, -50) }}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+<!-- breadcrumbs -->
+{% if breadcrumbs | length > 0 %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="{{ app.request.get('locale_url_prefix') }}">
+                    <i class="bi bi-house-door"></i>
+                </a>
+            </li>
+            {% for crumb in breadcrumbs %}
+                <li class="breadcrumb-item">
+                    <a href="{{ catalogPath(crumb.uri) }}">{{ crumb.title }}</a>
+                </li>
+            {% endfor %}
+        </ol>
+    </nav>
+{% endif %}
+<!-- /breadcrumbs -->

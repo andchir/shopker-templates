@@ -5,7 +5,7 @@ function createPlot(elementId, data, fieldNameY, fieldNameX) {
     const dataY = [];
     
     data.forEach(function(item) {
-        dataX.push(item[fieldNameX] || 0);
+        dataX.push(item[fieldNameX] || null);
         dataY.push(item[fieldNameY] || '');
     });
     
@@ -21,7 +21,7 @@ function createPlot(elementId, data, fieldNameY, fieldNameX) {
             },
             marker: {
                 size: 6,
-                color: '#178ccf'
+                color: '#17BECF'
             }
         }],
         {margin: {t: 0}},

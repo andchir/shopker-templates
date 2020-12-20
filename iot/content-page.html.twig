@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ currentPage.title | default('') }} - {{ app_name }}{% endblock %}
+
+{% block body %}
+    
+    {% include 'nav/breadcrumbs.html.twig' %}
+    {% include 'nav/child-categories-menu.html.twig' %}
+    
+    {{ currentPage | json_encode }}
+    
+{% endblock %}
+
