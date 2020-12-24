@@ -1,13 +1,14 @@
+{% set fieldsOnPage = contentType.getFieldsByFlag('showOnPage') %}
 <script>
     const data_{{ collectionName }} = [
-        {% for item in items %}
-            {
-                temperature: {{ item.temperature | default('null') }},
-                humidity: {{ item.humidity | default('null') }},
-                pm25: {{ item.pm25 | default('null') }},
-                time: "{{ item.time | default('') | date('d.m.Y H:i:s') }}"
-            }{% if not loop.last %},{% endif %}
-        {% endfor -%}
+        {% for item in items -%}
+        {
+    {% for field in fieldsOnPage -%}
+    {{ field.name }}: {{ item[field.name] | default(0) }},
+    {% endfor -%}
+    time: "{{ item.time | default('') | date('d.m.Y H:i:s') }}"
+    }{% if not loop.last %},{% endif -%}
+    {% endfor -%}
     ];
 </script>
 
@@ -15,7 +16,7 @@
     {% include 'nav/pagination.html.twig' %}
 </div>
 
-{% for field in contentType.getFieldsByFlag('showOnPage') %}
+{% for field in fieldsOnPage %}
     
     <div class="card shadow mb-5">
         <div class="card-header">
@@ -26,7 +27,7 @@
             <div id="chart-{{ field.name }}" style="width:100%; height:350px;"></div>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    createPlot('chart-{{ field.name }}', data_{{ collectionName }}, '{{ field.name }}', 'time');
+                    createPlot('chart-{{ field.name }}', data_{{ collectionName }}, '{{ field.name }}', 'time', '{{ app.request.locale }}');
                 });
             </script>
         

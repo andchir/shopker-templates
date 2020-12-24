@@ -1,12 +1,12 @@
 
-function createPlot(elementId, data, fieldNameY, fieldNameX) {
+function createPlot(elementId, data, fieldNameY, fieldNameX, locale) {
     const element = document.getElementById(elementId);
     const dataX = [];
     const dataY = [];
     
     data.forEach(function(item) {
-        dataX.push(item[fieldNameX] || null);
-        dataY.push(item[fieldNameY] || '');
+        dataX.push(typeof item[fieldNameX] !== 'undefined' ? item[fieldNameX] : null);
+        dataY.push(typeof item[fieldNameY] !== 'undefined' ? item[fieldNameY] : null);
     });
     
     Plotly.plot(element,
@@ -25,6 +25,6 @@ function createPlot(elementId, data, fieldNameY, fieldNameX) {
             }
         }],
         {margin: {t: 0}},
-        {responsive: true, locale: 'ru-RU'}
+        {responsive: true, locale: locale}
     );
 }

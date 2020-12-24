@@ -1,0 +1,30 @@
+<!-- filters -->
+<form action="{{ catalogPath(currentUri) }}" method="get">
+    <input type="hidden" name="limit" value="{{ pagesOptions.limit}}">
+    <input type="hidden" name="page" value="1">
+    <input type="hidden" name="order_by" value="{{ queryOptions.order_by }}">
+    <div class="catalog-filters mb-4" id="catalog-filters">
+        <div class="catalog-filters-wrapper">
+            <div class="catalog-filters-inner">
+                <div class="row">
+                    <div class="col-12 col-lg-4">
+                        {{ outputFilters(filters, '', 'filters' ~ currentPage.id) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="d-inline-block filters-button-apply shk-onfilter-change me-2">
+                <button class="btn btn-info btn-block" type="submit">
+                    {{ 'Apply' | trans }}
+                </button>
+            </div>
+            <div class="{% if queryOptions.filter | length == 0 %}d-none{% else %}d-inline-block{% endif %}">
+                <a class="btn btn-secondary btn-block shk-button-filters-reset" href="{{ catalogPath(currentUri) }}">
+                    {{ 'Reset' | trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- /filters -->

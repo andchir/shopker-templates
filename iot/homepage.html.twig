@@ -8,6 +8,6 @@
         </div>
     </div>
     
-    {{ contentList('sensor_data', 'sensors', {"isActive": true}, {"_id": "asc"}, -50) }}
+    {{ contentList('sensor_data', 'sensors', {"isActive": true, parentId: 20}, {"_id": "asc"}, -50) }}
     
 {% endblock %}
